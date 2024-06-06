@@ -9,7 +9,7 @@ import cors from 'cors';
 import { ObjectId } from 'mongodb';
 require('dotenv').config();
 
-const app = express();
+export const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(cors());
@@ -24,7 +24,7 @@ connectDB();
  */
 app.get('/', (req: Request, res: Response): void => {
   try {
-    res.json({
+    res.status(200).json({
       message: 'It works!',
     });
   } catch (error) {
