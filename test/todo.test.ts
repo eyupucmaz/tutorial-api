@@ -14,7 +14,7 @@ describe('API Endpoints Test', () => {
     });
 
     test('GET /item/all', async () => {
-      const response = await request(app).get('/item/all');
+      const response = await request(app).get('/items/all');
 
       expect(response.status).toBe(200);
       expect(response.body).toHaveProperty('docs');

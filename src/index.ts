@@ -41,7 +41,7 @@ app.get('/', (req: Request, res: Response): void => {
  * @param res - The response object.
  * @returns A JSON response containing an array of items.
  */
-app.get('/item/all', async (req: Request, res: Response): Promise<void> => {
+app.get('/items/all', async (req: Request, res: Response): Promise<void> => {
   try {
     const posts = await db.collection('posts').find().toArray();
     res.json({ docs: posts });
