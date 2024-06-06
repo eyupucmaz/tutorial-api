@@ -1,6 +1,6 @@
-# Node & MongoDB API Tutorial
+# Node - Typescript - Express & MongoDB API Tutorial
 
-This is a simple tutorial on how to create a RESTful API using Node.js and MongoDB.
+This is a simple API tutorial project that uses Node.js, Express, MongoDB and Typescript. It includes CRUD operations for items.
 
 ## Run Locally
 
