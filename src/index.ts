@@ -28,7 +28,6 @@ app.get('/', (req: Request, res: Response): void => {
       message: 'It works!',
     });
   } catch (error) {
-    console.error(error);
     res.status(500).json({
       message: 'Server Error',
     });
@@ -47,7 +46,6 @@ app.get('/item/all', async (req: Request, res: Response): Promise<void> => {
     const posts = await db.collection('posts').find().toArray();
     res.json({ docs: posts });
   } catch (error) {
-    console.error(error);
     res.status(500).json({
       message: 'Server Error',
       error: error,
@@ -68,7 +66,6 @@ app.get('/item/:id', async (req: Request, res: Response) => {
     const item = await db.collection('posts').findOne({ _id: new ObjectId(id) });
     res.json(item);
   } catch (error) {
-    console.error(error);
     res.status(500).json({
       message: 'Server Error',
       error: error,

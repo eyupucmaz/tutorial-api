@@ -21,7 +21,6 @@ export const seed = async (): Promise<Object> => {
 
     return {seedMsg: posts}
   } catch (error) {
-
     return {error: error}
   }
 }
