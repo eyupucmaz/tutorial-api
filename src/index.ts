@@ -48,7 +48,7 @@ app.get('/items/all', async (req: Request, res: Response): Promise<void> => {
   } catch (error) {
     res.status(500).json({
       message: 'Server Error',
-      error: error,
+      error: JSON.stringify(error),
     });
   }
 });
@@ -68,7 +68,7 @@ app.get('/item/:id', async (req: Request, res: Response) => {
   } catch (error) {
     res.status(500).json({
       message: 'Server Error',
-      error: error,
+      error: JSON.stringify(error),
     });
   }
 });

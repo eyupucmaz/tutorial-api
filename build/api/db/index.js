@@ -28,8 +28,6 @@ const connectDB = () => __awaiter(void 0, void 0, void 0, function* () {
         return { status: 200, message: "Connected to database!" };
     }
     catch (error) {
-        if (error instanceof Error)
-            console.error(error.message);
         return { status: 400, message: "Failed to connect to database!" };
     }
 });
