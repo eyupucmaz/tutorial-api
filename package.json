@@ -34,5 +34,11 @@
   },
   "engines": {
     "node": "18.15.0"
+  },
+  "compilerOptions": {
+    "typeRoots": [
+      "./node_modules/@types",
+      "./types"
+    ]
   }
 }
