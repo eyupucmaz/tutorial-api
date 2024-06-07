@@ -82,7 +82,8 @@ exports.app.get('/items/all', (req, res) => __awaiter(void 0, void 0, void 0, fu
     catch (error) {
         res.status(500).json({
             message: 'Server Error',
-            error: error,
+            error: JSON.stringify(error),
+            request: req,
         });
     }
 }));
@@ -102,7 +103,8 @@ exports.app.get('/item/:id', (req, res) => __awaiter(void 0, void 0, void 0, fun
     catch (error) {
         res.status(500).json({
             message: 'Server Error',
-            error: error,
+            error: JSON.stringify(error),
+            request: req,
         });
     }
 }));
