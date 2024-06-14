@@ -113,7 +113,6 @@ exports.app.get('/item/:id', (req, res) => __awaiter(void 0, void 0, void 0, fun
 }));
 exports.app.post('/item', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const item = req.body;
-    console.log("Item::", item);
     if (!item || !item.title || !item.content || !item.author) {
         res.status(400).json({
             message: 'Fields are missing. Please provide title, content, and author.',
@@ -130,6 +129,24 @@ exports.app.post('/item', (req, res) => __awaiter(void 0, void 0, void 0, functi
                 error: JSON.stringify(error),
             });
         }
+    }
+}));
+exports.app.delete('/item', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const id = req.query.id;
+    if (!id) {
+        res.status(400).json({
+            message: 'ID is missing. Please provide an ID.',
+        });
+    }
+    try {
+        const result = yield db_1.db.collection('posts').deleteOne({ _id: new mongodb_1.ObjectId(id) });
+        res.json(result);
+    }
+    catch (error) {
+        res.status(500).json({
+            message: 'Server Error',
+            error: JSON.stringify(error),
+        });
     }
 }));
 exports.app.listen(port, () => {
