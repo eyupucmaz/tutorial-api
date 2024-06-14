@@ -45,8 +45,13 @@ const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
 const mongodb_1 = require("mongodb");
 require('dotenv').config();
+const body_parser_1 = __importDefault(require("body-parser"));
 exports.app = (0, express_1.default)();
 const port = process.env.PORT || 3000;
+// parse application/x-www-form-urlencoded
+exports.app.use(body_parser_1.default.json({ type: 'application/*+json' }));
+// parse application/json
+exports.app.use(body_parser_1.default.json());
 exports.app.use((0, cors_1.default)());
 (0, db_1.default)();
 /**
@@ -83,7 +88,6 @@ exports.app.get('/items/all', (req, res) => __awaiter(void 0, void 0, void 0, fu
         res.status(500).json({
             message: 'Server Error',
             error: JSON.stringify(error),
-            request: req,
         });
     }
 }));
@@ -104,10 +108,30 @@ exports.app.get('/item/:id', (req, res) => __awaiter(void 0, void 0, void 0, fun
         res.status(500).json({
             message: 'Server Error',
             error: JSON.stringify(error),
-            request: req,
         });
     }
 }));
+exports.app.post('/item', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const item = req.body;
+    console.log("Item::", item);
+    if (!item || !item.title || !item.content || !item.author) {
+        res.status(400).json({
+            message: 'Fields are missing. Please provide title, content, and author.',
+        });
+    }
+    else {
+        try {
+            const result = yield db_1.db.collection('posts').insertOne(item);
+            res.json(result);
+        }
+        catch (error) {
+            res.status(500).json({
+                message: 'Server Error',
+                error: JSON.stringify(error),
+            });
+        }
+    }
+}));
 exports.app.listen(port, () => {
-    console.log(`Server running on port ${port}`);
+    console.log(`Server running on port https://localhost:${port}`);
 });

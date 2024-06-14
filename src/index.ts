@@ -8,10 +8,14 @@ import express, { Request, Response } from 'express';
 import cors from 'cors';
 import { ObjectId } from 'mongodb';
 require('dotenv').config();
+import bodyParser from 'body-parser';
 
 export const app = express();
 const port = process.env.PORT || 3000;
-
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.json({ type: 'application/*+json'}));
+// parse application/json
+app.use(bodyParser.json());
 app.use(cors());
 
 connectDB();
@@ -73,6 +77,25 @@ app.get('/item/:id', async (req: Request, res: Response) => {
   }
 });
 
+app.post('/item', async (req: Request, res: Response) => {
+  const item = req.body;
+  if(!item || !item.title || !item.content || !item.author) {
+    res.status(400).json({
+      message: 'Fields are missing. Please provide title, content, and author.',
+    });
+  } else{
+    try {
+      const result = await db.collection('posts').insertOne(item);
+      res.json(result);
+    } catch (error) {
+      res.status(500).json({
+        message: 'Server Error',
+        error: JSON.stringify(error),
+      });
+    }
+  }
+});
+
 app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
+  console.log(`Server running on port https://localhost:${port}`);
 });
