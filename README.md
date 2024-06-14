@@ -62,6 +62,10 @@ To run tests, run the following command
 | :-------- | :------- | :-------------------------------- |
 | `id`      | `string` | **Required**. Id of item to fetch |
 
+# Live Demo
+
+The project is deployed on render.com. You can access it via the following link: [Tutorial API](https://node-ts-tutorial-api.onrender.com/)
+
 
 ## Authors
 
