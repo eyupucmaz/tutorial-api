@@ -62,6 +62,29 @@ To run tests, run the following command
 | :-------- | :------- | :-------------------------------- |
 | `id`      | `string` | **Required**. Id of item to fetch |
 
+#### Create item
+
+```http
+  POST /item
+```
+
+| Body | Type     | Description                                  |
+| :-------- | :------- | :-------------------------------------- |
+| `title`   | `string` | **Required**. Name of item |
+| `content`      | `string` | **Required**. Description of item |
+| `author` | `string` | **Required**. Author of item |
+
+#### Delete item
+
+```http
+  DELETE /item?id={id}
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `id`      | `string` | **Required**. Id of item to delete |
+
+
 # Live Demo
 
 The project is deployed on render.com. You can access it via the following link: [Tutorial API](https://node-ts-tutorial-api.onrender.com/)
