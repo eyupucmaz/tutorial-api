@@ -96,6 +96,24 @@ app.post('/item', async (req: Request, res: Response) => {
   }
 });
 
+app.delete('/item', async (req: Request, res: Response) => {
+  const id = req.query.id as string;
+  if(!id) {
+    res.status(400).json({
+      message: 'ID is missing. Please provide an ID.',
+    });
+  }
+  try {
+    const result = await db.collection('posts').deleteOne({ _id: new ObjectId(id) });
+    res.json(result);
+  } catch (error) {
+    res.status(500).json({
+      message: 'Server Error',
+      error: JSON.stringify(error),
+    });
+  }
+});
+
 app.listen(port, () => {
   console.log(`Server running on port https://localhost:${port}`);
 });
